@@ -13,10 +13,7 @@ function HospitalDashboard() {
   const [requests, setRequests] = useState([]);
   const [loadingAction, setLoadingAction] = useState({});
 
-  useEffect(() => {
-    fetchBloodSamples();
-    fetchRequests();
-  }, []);
+  
 
   const fetchBloodSamples = async () => {
     try {
@@ -41,6 +38,11 @@ function HospitalDashboard() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+  fetchBloodSamples();
+  fetchRequests();
+}, []);
 
   const approveRequest = async (id) => {
     setLoadingAction((p) => ({ ...p, [id]: "approving" }));

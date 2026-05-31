@@ -10,12 +10,7 @@ function ReceiverDashboard() {
   const [requestUnits, setRequestUnits] = useState({});
   const [loadingSend, setLoadingSend] = useState({});
 
-  useEffect(() => {
-    const loggedUser = JSON.parse(localStorage.getItem("user"));
-    setUser(loggedUser);
-    fetchBloodSamples();
-    if (loggedUser) fetchMyRequests(loggedUser.id);
-  }, []);
+ 
 
   const fetchBloodSamples = async () => {
     try {
@@ -40,6 +35,13 @@ function ReceiverDashboard() {
       console.log(error);
     }
   };
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   useEffect(() => {
+    const loggedUser = JSON.parse(localStorage.getItem("user"));
+    setUser(loggedUser);
+    fetchBloodSamples();
+    if (loggedUser) fetchMyRequests(loggedUser.id);
+  }, []);
 
   const sendRequest = async (sampleId) => {
     const units = requestUnits[sampleId];
