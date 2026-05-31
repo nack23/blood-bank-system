@@ -1,0 +1,22 @@
+# React dependencies
+frontend/node_modules/
+
+# React build files
+frontend/build/
+frontend/dist/
+
+# Environment files
+frontend/.env
+frontend/.env.local
+
+# VS Code
+.vscode/
+
+# Windows files
+Thumbs.db
+
+# Mac files
+.DS_Store
+
+# Logs
+*.log
