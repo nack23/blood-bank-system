@@ -25,7 +25,7 @@ function Home() {
 
       {/* Hero */}
       <section style={s.hero}>
-        <div style={s.heroInner}>
+        <div className="hero-inner" style={s.heroInner}>
           {/* Left */}
           <div style={s.heroLeft}>
             <span style={s.heroPill}>🏥 Blood Bank Management System</span>
@@ -37,7 +37,7 @@ function Home() {
               Find available blood samples from registered hospitals instantly.
               Hospitals manage inventory while receivers request compatible blood with ease.
             </p>
-            <div style={s.heroButtons}>
+            <div className="hero-btns" style={s.heroButtons}>
               <Link to="/available-blood" style={s.btnPrimary}
                 onMouseOver={(e) => (e.currentTarget.style.background = "#b91c1c")}
                 onMouseOut={(e) => (e.currentTarget.style.background = "#dc2626")}
@@ -50,9 +50,9 @@ function Home() {
           </div>
 
           {/* Right — Stats Card */}
-          <div style={s.heroRight}>
+          <div className="hero-right" style={s.heroRight}>
             <div style={s.statsCard}>
-              <div style={s.statsGrid}>
+              <div className="stats-grid" style={s.statsGrid}>
                 {[
                   { val: "24/7", label: "Blood Availability", icon: "⏰" },
                   { val: "Fast", label: "Blood Requests", icon: "⚡" },
@@ -86,7 +86,7 @@ function Home() {
             <h2 style={s.sectionTitle}>System Features</h2>
             <p style={s.sectionSub}>Everything you need in one platform</p>
           </div>
-          <div style={s.featGrid}>
+          <div className="feat-grid" style={s.featGrid}>
             {[
               { icon: "🏥", title: "Hospitals", desc: "Register and manage available blood samples. Approve or reject incoming receiver requests in real time." },
               { icon: "🩸", title: "Available Blood", desc: "Browse blood inventory from all registered hospitals without needing to log in." },
@@ -119,7 +119,7 @@ function Home() {
             <h2 style={s.sectionTitle}>How It Works</h2>
             <p style={s.sectionSub}>5 simple steps to get the blood you need</p>
           </div>
-          <div style={s.stepsRow}>
+          <div className="steps-row" style={s.stepsRow}>
             {[
               { num: "1", icon: "🏥", label: "Hospital Registers" },
               { num: "2", icon: "➕", label: "Add Blood Samples" },
@@ -133,7 +133,7 @@ function Home() {
                   <div style={{ fontSize: "1.8rem", margin: "0.5rem 0" }}>{icon}</div>
                   <p style={s.stepLabel}>{label}</p>
                 </div>
-                {idx < arr.length - 1 && <div style={s.stepArrow}>→</div>}
+                {idx < arr.length - 1 && <div className="step-arrow" style={s.stepArrow}>→</div>}
               </div>
             ))}
           </div>
@@ -145,7 +145,7 @@ function Home() {
         <div style={s.ctaInner}>
           <h2 style={s.ctaTitle}>Every Second Counts</h2>
           <p style={s.ctaSub}>Register your hospital or find blood right now — it's free and instant.</p>
-          <div style={s.ctaBtns}>
+          <div className="cta-btns" style={s.ctaBtns}>
             <Link to="/available-blood" style={s.ctaBtnWhite}
               onMouseOver={(e) => (e.currentTarget.style.background = "#f3f4f6")}
               onMouseOut={(e) => (e.currentTarget.style.background = "#fff")}
@@ -173,20 +173,95 @@ function Home() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap');
         * { box-sizing: border-box; }
-        body { font-family: 'Sora', sans-serif; margin: 0; }
+        body { font-family: 'Sora', sans-serif; margin: 0; overflow-x: hidden; }
         a { text-decoration: none; }
 
-        @media (max-width: 900px) {
-          .hero-inner { flex-direction: column !important; }
-          .hero-right { width: 100% !important; }
-          .steps-row { flex-wrap: wrap !important; justify-content: center !important; }
-          .step-arrow { display: none !important; }
+        /* HERO */
+        .hero-inner {
+          flex-direction: row;
         }
+        .hero-right {
+          flex: 1;
+          min-width: 280px;
+          position: relative;
+        }
+
+        /* FEATURES GRID — 3 cols desktop */
+        .feat-grid {
+          grid-template-columns: repeat(3, 1fr) !important;
+        }
+
+        /* STEPS */
+        .steps-row {
+          flex-wrap: nowrap;
+        }
+        .step-arrow {
+          display: block;
+        }
+
+        /* CTA BUTTONS */
+        .cta-btns {
+          flex-direction: row;
+        }
+
+        /* HERO BUTTONS */
+        .hero-btns {
+          flex-direction: row;
+        }
+
+        /* STATS GRID — 2 cols always */
+        .stats-grid {
+          grid-template-columns: 1fr 1fr !important;
+        }
+
+        /* ── TABLET ── */
+        @media (max-width: 900px) {
+          .hero-inner {
+            flex-direction: column !important;
+            gap: 3rem !important;
+          }
+          .hero-right {
+            width: 100% !important;
+            max-width: 500px;
+            margin: 0 auto;
+          }
+          .steps-row {
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+          }
+          .step-arrow {
+            display: none !important;
+          }
+          .feat-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+
+        /* ── MOBILE ── */
         @media (max-width: 640px) {
-          .feat-grid { grid-template-columns: 1fr !important; }
-          .hero-btns { flex-direction: column !important; }
-          .cta-btns { flex-direction: column !important; align-items: center !important; }
-          .stats-grid { grid-template-columns: 1fr 1fr !important; }
+          .feat-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .hero-btns {
+            flex-direction: column !important;
+            width: 100%;
+          }
+          .hero-btns a {
+            text-align: center;
+            width: 100%;
+          }
+          .cta-btns {
+            flex-direction: column !important;
+            align-items: center !important;
+            width: 100%;
+          }
+          .cta-btns a {
+            width: 100%;
+            text-align: center;
+          }
+          .stats-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
         }
       `}</style>
     </div>
@@ -198,6 +273,7 @@ const s = {
     minHeight: "100vh",
     background: "#fff",
     fontFamily: "'Sora', sans-serif",
+    overflowX: "hidden",
   },
   // Navbar
   navbar: {
@@ -246,6 +322,7 @@ const s = {
   hero: {
     background: "linear-gradient(135deg, #fff1f2 0%, #f8fafc 60%, #fff 100%)",
     padding: "5rem 1.5rem 4rem",
+    overflowX: "hidden",
   },
   heroInner: {
     maxWidth: "1200px",
@@ -253,10 +330,8 @@ const s = {
     display: "flex",
     alignItems: "center",
     gap: "4rem",
-    flexWrap: "wrap",
-    className: "hero-inner",
   },
-  heroLeft: { flex: 1, minWidth: "280px" },
+  heroLeft: { flex: 1, minWidth: "0" },
   heroPill: {
     background: "#fee2e2",
     color: "#dc2626",
@@ -268,16 +343,17 @@ const s = {
     marginBottom: "1.5rem",
   },
   heroHeading: {
-    fontSize: "clamp(2.4rem, 6vw, 4.5rem)",
+    fontSize: "clamp(2rem, 6vw, 4.5rem)",
     fontWeight: "900",
     color: "#111827",
     lineHeight: 1.05,
     margin: "0 0 1.5rem",
     letterSpacing: "-0.02em",
+    wordBreak: "break-word",
   },
   heroDesc: {
     color: "#6b7280",
-    fontSize: "clamp(1rem, 2vw, 1.15rem)",
+    fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
     lineHeight: 1.7,
     margin: "0 0 2.5rem",
     maxWidth: "500px",
@@ -286,7 +362,6 @@ const s = {
     display: "flex",
     gap: "1rem",
     flexWrap: "wrap",
-    className: "hero-btns",
   },
   btnPrimary: {
     background: "#dc2626",
@@ -309,7 +384,7 @@ const s = {
     transition: "background 0.2s",
     display: "inline-block",
   },
-  heroRight: { flex: 1, minWidth: "280px", position: "relative" },
+  heroRight: { flex: 1, minWidth: "0" },
   statsCard: {
     background: "#fff",
     borderRadius: "24px",
@@ -321,7 +396,6 @@ const s = {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
     gap: "1rem",
-    className: "stats-grid",
   },
   statItem: {
     background: "linear-gradient(135deg, #fff1f2, #fef2f2)",
@@ -377,7 +451,6 @@ const s = {
     display: "grid",
     gridTemplateColumns: "repeat(3, 1fr)",
     gap: "1.5rem",
-    className: "feat-grid",
   },
   featCard: {
     background: "#fff",
@@ -398,7 +471,6 @@ const s = {
     justifyContent: "center",
     gap: "0.5rem",
     flexWrap: "wrap",
-    className: "steps-row",
   },
   stepCard: {
     background: "#fff",
@@ -406,7 +478,7 @@ const s = {
     borderRadius: "16px",
     padding: "1.5rem 1rem",
     textAlign: "center",
-    width: "150px",
+    width: "130px",
     boxShadow: "0 4px 6px -1px rgba(0,0,0,0.07)",
   },
   stepNum: {
@@ -418,12 +490,11 @@ const s = {
     fontWeight: "800", fontSize: "0.9rem",
     margin: "0 auto",
   },
-  stepLabel: { margin: 0, fontSize: "0.82rem", color: "#374151", fontWeight: "600", marginTop: "0.4rem" },
+  stepLabel: { margin: 0, fontSize: "0.78rem", color: "#374151", fontWeight: "600", marginTop: "0.4rem" },
   stepArrow: {
     color: "#fca5a5",
     fontSize: "1.4rem",
     fontWeight: "700",
-    className: "step-arrow",
   },
   // CTA
   ctaBanner: {
@@ -444,7 +515,6 @@ const s = {
     gap: "1rem",
     justifyContent: "center",
     flexWrap: "wrap",
-    className: "cta-btns",
   },
   ctaBtnWhite: {
     background: "#fff",
