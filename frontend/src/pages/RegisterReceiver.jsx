@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
+import API_URL from "../config";
+
 function RegisterReceiver() {
   const navigate = useNavigate();
 
@@ -33,7 +35,7 @@ function RegisterReceiver() {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost/blood-bank-system/backend/index.php",
+        API_URL,
         { name: fullName, email, password, role: "receiver", blood_group: bloodGroup },
         { headers: { "Content-Type": "application/json" } }
       );

@@ -1,4 +1,5 @@
 # React dependencies
+node_modules/
 frontend/node_modules/
 
 # React build files
