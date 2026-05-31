@@ -35,7 +35,7 @@ function ReceiverDashboard() {
       console.log(error);
     }
   };
-   // eslint-disable-next-line react-hooks/exhaustive-deps
+  
    useEffect(() => {
     const loggedUser = JSON.parse(localStorage.getItem("user"));
     setUser(loggedUser);
